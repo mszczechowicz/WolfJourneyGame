@@ -31,9 +31,9 @@ $RECYCLE.BIN/
 
 *.7z
 
-/[Uu]serSettings/
-/[Ll]ibrary/
-/[Ll]ogs/
+[Uu]serSettings/
+[Ll]ibrary/
+[Ll]ogs/
 [Tt]emp/
 [Oo]bj/
 [Bb]uild/
