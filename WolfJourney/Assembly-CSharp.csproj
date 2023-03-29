@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\StateMachines\State.cs" />
     <Compile Include="Assets\Scripts\InputHandler.cs" />
-    <Compile Include="Assets\Scripts\StateMachines\Player\PlayerDashState.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Player\PlayerUnArmedState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\StateMachine.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerBaseState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerStateMachine.cs" />
