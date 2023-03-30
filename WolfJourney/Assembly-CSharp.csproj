@@ -56,9 +56,12 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ForceReceiver.cs" />
     <Compile Include="Assets\Scripts\StateMachines\State.cs" />
+    <Compile Include="Assets\Scripts\Attack.cs" />
     <Compile Include="Assets\Scripts\InputHandler.cs" />
-    <Compile Include="Assets\Scripts\StateMachines\Player\PlayerUnArmedState.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Player\PlayerArmedState.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Player\PlayerAttackingState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\StateMachine.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerBaseState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerStateMachine.cs" />

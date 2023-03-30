@@ -3,29 +3,55 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
 
-public class PlayerUnArmedState : PlayerBaseState
+public class PlayerArmedState : PlayerBaseState
 {
     //Stringtohash Szybsze w obliczaniu ni¿ string
     private readonly int VelocityHash = Animator.StringToHash("Velocity");
 
-
     private const float AnimatorDampTime = 0.1f;
 
+    
 
 
-    public PlayerUnArmedState(PlayerStateMachine stateMachine) : base(stateMachine){}
+
+    public PlayerArmedState(PlayerStateMachine stateMachine) : base(stateMachine){}
 
     public override void Enter()
     {
-
-       
+       // stateMachine.Animator.Play("PlayerArmedState");
+        stateMachine.Animator.CrossFadeInFixedTime("PlayerArmedState",0.2f);
     }
-  
+
+    
+
     public override void Tick(float deltaTime)
     {
+
+        if (stateMachine.InputHandler.IsAttacking)
+        {
+            stateMachine.SwitchState(new PlayerAttackingState(stateMachine, 0));
+            return;
+        }
+        
+
+
         Vector3 movement = CalculateMovement();
+
+        Move(movement * stateMachine.FreeLookMovementSpeed, deltaTime);
+       
+
+
+
+
+
+        
+
+
+
+      
         
 
 
@@ -39,13 +65,13 @@ public class PlayerUnArmedState : PlayerBaseState
             return;       
         }
         stateMachine.Animator.SetFloat(VelocityHash, 1, AnimatorDampTime, deltaTime);
-        //stateMachine.transform.rotation = Quaternion.LookRotation(movement);
+       
 
         FaceMovementDirection(movement, deltaTime);
     }
     public override void Exit()
     {
-       
+        
     }
 
     private Vector3 CalculateMovement()
@@ -68,6 +94,7 @@ public class PlayerUnArmedState : PlayerBaseState
         stateMachine.transform.rotation = Quaternion.Lerp(stateMachine.transform.rotation,Quaternion.LookRotation(movement),deltatime* stateMachine.RotationDamping);            
     }
 
+   
 
 
 }

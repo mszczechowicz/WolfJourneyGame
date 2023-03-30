@@ -6,14 +6,21 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour, Controls.IPlayerActions
 {
+    public bool IsAttacking { get; private set; }
+
     public Vector2 MovementValue { get; private set; }
 
     public event Action DashEvent;
 
     public event Action JumpEvent;
 
+    public event Action ArmingEvent;
+
+   // public event Action AttackDown;
 
     private Controls controls;
+
+    
 
     private void Start()
     {
@@ -51,5 +58,28 @@ public class InputHandler : MonoBehaviour, Controls.IPlayerActions
     public void OnLook(InputAction.CallbackContext context)
     {
        //Controlled by Cinemachine
+    } 
+   
+
+    public void OnArming(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+
+        ArmingEvent?.Invoke();
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        { 
+            IsAttacking = true;
+        }
+
+        else if (context.canceled)
+        {
+            IsAttacking = false;
+        }
+
+        
     }
 }
