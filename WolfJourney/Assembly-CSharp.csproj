@@ -66,6 +66,9 @@
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerBaseState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerStateMachine.cs" />
     <Compile Include="Assets\Scripts\Controls.cs" />
+    <Compile Include="Assets\Scripts\WeaponHandler.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Player\Health.cs" />
+    <Compile Include="Assets\Scripts\WeaponDamage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
