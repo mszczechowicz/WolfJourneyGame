@@ -13,10 +13,7 @@ public class InputHandler : MonoBehaviour, Controls.IPlayerActions
     public event Action DashEvent;
 
     public event Action JumpEvent;
-
-    public event Action ArmingEvent;
-
-   // public event Action AttackDown;
+    
 
     private Controls controls;
 
@@ -61,12 +58,7 @@ public class InputHandler : MonoBehaviour, Controls.IPlayerActions
     } 
    
 
-    public void OnArming(InputAction.CallbackContext context)
-    {
-        if (!context.performed) { return; }
-
-        ArmingEvent?.Invoke();
-    }
+   
 
     public void OnAttack(InputAction.CallbackContext context)
     {

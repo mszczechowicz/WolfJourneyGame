@@ -7,8 +7,13 @@ public class ForceReceiver : MonoBehaviour
 {
     [SerializeField] private CharacterController characterController;
     [SerializeField] private float drag = 0.3f;
+    [SerializeField] private bool IsGroundedCheck;
+    
+    
 
     [field: SerializeField] public float GravityPower { get; private set; }
+
+
 
     private Vector3 impact;
     private Vector3 dampingVelocity;
@@ -18,6 +23,9 @@ public class ForceReceiver : MonoBehaviour
     public Vector3 Movement => impact + Vector3.up * verticalVelocity;
     private void Update()
     {
+        //Widocznoœæ ISGROUNDED  w inspektorze
+        IsGroundedCheck = characterController.isGrounded;
+
         if (verticalVelocity < 0f && characterController.isGrounded)
         {
             verticalVelocity = Physics.gravity.y * Time.deltaTime;
@@ -35,4 +43,11 @@ public class ForceReceiver : MonoBehaviour
         impact += force;
     }
 
+    
+
+    public void Jump(float jumpForce)
+    {
+        verticalVelocity += jumpForce;
+    
+    }
 }

@@ -24,5 +24,12 @@ public abstract class PlayerBaseState : State
 
         stateMachine.CharacterController.Move((motion + stateMachine.ForceReceiver.Movement) * deltaTime);
     }
+
+    protected void ReturnToLocomotion()
+    {
+        stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+    }
+
     
+
 }

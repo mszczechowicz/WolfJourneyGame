@@ -53,7 +53,7 @@ public class PlayerAttackingState : PlayerBaseState
         }
         else
         {
-            stateMachine.SwitchState(new PlayerArmedState(stateMachine));
+            stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
             Debug.Log("BacktoMornalState");
         }
 

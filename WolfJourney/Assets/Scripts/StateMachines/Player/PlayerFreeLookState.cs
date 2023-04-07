@@ -6,29 +6,41 @@ using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
 
-public class PlayerArmedState : PlayerBaseState
+public class PlayerFreeLookState : PlayerBaseState
 {
     //Stringtohash Szybsze w obliczaniu ni¿ string
     private readonly int VelocityHash = Animator.StringToHash("Velocity");
 
     private const float AnimatorDampTime = 0.1f;
 
+
+    private readonly int FreeLookHash = Animator.StringToHash("PlayerFreeLookState");
+
+    private const float CrossFadeDuration = 0.1f;
+
     
 
 
 
-    public PlayerArmedState(PlayerStateMachine stateMachine) : base(stateMachine){}
+    public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine){}
 
     public override void Enter()
     {
-       // stateMachine.Animator.Play("PlayerArmedState");
-        stateMachine.Animator.CrossFadeInFixedTime("PlayerArmedState",0.2f);
+      
+        stateMachine.Animator.CrossFadeInFixedTime(FreeLookHash, CrossFadeDuration);
+        
+        stateMachine.InputHandler.JumpEvent += OnJump;
     }
 
     
 
     public override void Tick(float deltaTime)
     {
+        //TODO falling onstart bug
+       // if (!stateMachine.CharacterController.isGrounded) { stateMachine.SwitchState(new PlayerFallingState(stateMachine));return; }
+        
+        
+
 
         if (stateMachine.InputHandler.IsAttacking)
         {
@@ -41,18 +53,6 @@ public class PlayerArmedState : PlayerBaseState
         Vector3 movement = CalculateMovement();
 
         Move(movement * stateMachine.FreeLookMovementSpeed, deltaTime);
-       
-
-
-
-
-
-        
-
-
-
-      
-        
 
 
         stateMachine.transform.Translate(movement * deltaTime);
@@ -68,10 +68,13 @@ public class PlayerArmedState : PlayerBaseState
        
 
         FaceMovementDirection(movement, deltaTime);
+
+
     }
     public override void Exit()
     {
-        
+        stateMachine.InputHandler.JumpEvent -= OnJump;
+
     }
 
     private Vector3 CalculateMovement()
@@ -94,7 +97,10 @@ public class PlayerArmedState : PlayerBaseState
         stateMachine.transform.rotation = Quaternion.Lerp(stateMachine.transform.rotation,Quaternion.LookRotation(movement),deltatime* stateMachine.RotationDamping);            
     }
 
-   
 
+    private void OnJump()
+    {
+        stateMachine.SwitchState(new PlayerJumpingState(stateMachine));
+    }
 
 }
