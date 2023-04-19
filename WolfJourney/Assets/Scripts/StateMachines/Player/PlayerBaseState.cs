@@ -29,7 +29,9 @@ public abstract class PlayerBaseState : State
     {
         stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
     }
+  
 
-    
+
+
 
 }

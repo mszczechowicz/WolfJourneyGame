@@ -5,17 +5,9 @@ using UnityEngine;
 public class PlayerJumpingState : PlayerBaseState
 {
 
-    private readonly int VelocityHash = Animator.StringToHash("Velocity");
-
-    private const float AnimatorDampTime = 0.1f;
-
-
-
     private readonly int JumpHash = Animator.StringToHash("Jump");
 
     private const float CrossFadeDuration = 0.1f;
-
-    private Vector3 momentumJump;
 
     public PlayerJumpingState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
@@ -23,29 +15,26 @@ public class PlayerJumpingState : PlayerBaseState
 
     public override void Enter()
     {
-        stateMachine.ForceReceiver.Jump(stateMachine.JumpForce);
-
-        momentumJump = stateMachine.CharacterController.velocity * stateMachine.JumpForce;
-
-        momentumJump.y = 0f;
-
        
-
+        stateMachine.ForceReceiver.Jump(stateMachine.JumpForce);
+        
         stateMachine.Animator.CrossFadeInFixedTime(JumpHash, CrossFadeDuration);
+
     }
 
     public override void Tick(float deltaTime)
     {
-       Move(momentumJump, deltaTime);
-       Move(stateMachine.CharacterController.velocity, deltaTime);
+        Vector3 inAirMovement = CalculateMovementInAir();
 
-        Vector3 jumpMovement = CalculateMovementInAir();
+        FaceMovementDirectionInAir(inAirMovement, deltaTime);
 
-        Move(jumpMovement * stateMachine.AirMovementSpeed, deltaTime);
+        Move(inAirMovement * stateMachine.AirMovementSpeed, deltaTime);
+
+        stateMachine.transform.Translate(inAirMovement * deltaTime);
+   
+        
 
 
-        stateMachine.transform.Translate(jumpMovement * deltaTime);
-        stateMachine.CharacterController.Move(jumpMovement * stateMachine.AirMovementSpeed * deltaTime);
 
 
         if (stateMachine.CharacterController.velocity.y <= 0)
@@ -71,6 +60,7 @@ public class PlayerJumpingState : PlayerBaseState
         forward.Normalize();
         right.Normalize();
 
+        
         return forward * stateMachine.InputHandler.MovementValue.y + right * stateMachine.InputHandler.MovementValue.x;
 
 
@@ -78,6 +68,12 @@ public class PlayerJumpingState : PlayerBaseState
 
     private void FaceMovementDirectionInAir(Vector3 movement, float deltatime)
     {
-        stateMachine.transform.rotation = Quaternion.Lerp(stateMachine.transform.rotation, Quaternion.LookRotation(movement), deltatime * stateMachine.RotationDamping);
+        if (movement != Vector3.zero)
+        {
+
+            stateMachine.transform.rotation = Quaternion.Lerp
+                (stateMachine.transform.rotation, Quaternion.LookRotation(movement), deltatime * stateMachine.RotationDamping);
+        }
+
     }
 }

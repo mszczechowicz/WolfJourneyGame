@@ -25,7 +25,7 @@ public class PlayerAttackingState : PlayerBaseState
         stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, attack.TransitionDuration);
 
         
-        Debug.Log(attack.AnimationName);
+       
     }
 
    
@@ -54,7 +54,7 @@ public class PlayerAttackingState : PlayerBaseState
         else
         {
             stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
-            Debug.Log("BacktoMornalState");
+            
         }
 
 
