@@ -24,6 +24,8 @@ public class PlayerJumpingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
+        
+
         Vector3 inAirMovement = CalculateMovementInAir();
 
         FaceMovementDirectionInAir(inAirMovement, deltaTime);
@@ -31,7 +33,7 @@ public class PlayerJumpingState : PlayerBaseState
         Move(inAirMovement * stateMachine.AirMovementSpeed, deltaTime);
 
         stateMachine.transform.Translate(inAirMovement * deltaTime);
-   
+
         
 
 
@@ -42,6 +44,9 @@ public class PlayerJumpingState : PlayerBaseState
             stateMachine.SwitchState(new PlayerFallingState(stateMachine));
             return;
         }
+        
+
+
     }
 
     public override void Exit()

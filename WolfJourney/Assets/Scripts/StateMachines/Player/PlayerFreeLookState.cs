@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEditorInternal;
 using UnityEngine;
 
@@ -10,15 +11,17 @@ public class PlayerFreeLookState : PlayerBaseState
 {
     //Stringtohash Szybsze w obliczaniu ni¿ string
     private readonly int VelocityHash = Animator.StringToHash("Velocity");
+  
 
     private const float AnimatorDampTime = 0.1f;
 
 
     private readonly int FreeLookHash = Animator.StringToHash("PlayerFreeLookState");
+ 
 
     private const float CrossFadeDuration = 0.1f;
 
-    RaycastHit groundCheckHit = new RaycastHit();
+  
 
 
 
@@ -26,17 +29,18 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Enter()
     {
-        
+    
         stateMachine.Animator.CrossFadeInFixedTime(FreeLookHash, CrossFadeDuration);
 
         stateMachine.InputHandler.JumpEvent += OnJump;
+        //stateMachine.InputHandler.DashEvent += OnDash;
     }
 
     
 
     public override void Tick(float deltaTime)
     {
-        //TODO falling onstart bug
+       
         
 
 
@@ -55,15 +59,14 @@ public class PlayerFreeLookState : PlayerBaseState
 
         Vector3 movement = CalculateMovement();
 
-      
 
 
 
+        //Debug.DrawRay(stateMachine.transform.position, CalculateSlope(movement), Color.blue, 0.5f);
         Move(CalculateSlope(movement) * stateMachine.FreeLookMovementSpeed, deltaTime);
+
         
-        Debug.DrawRay(stateMachine.transform.position, movement, Color.green, 0.5f);
-        //stateMachine.transform.Translate(movement * deltaTime);
-        //stateMachine.CharacterController.Move(movement * stateMachine.FreeLookMovementSpeed * deltaTime);
+       
 
         if(stateMachine.InputHandler.MovementValue == Vector2.zero)
         {
@@ -84,6 +87,7 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Exit()
     {
         stateMachine.InputHandler.JumpEvent -= OnJump;
+        //stateMachine.InputHandler.DashEvent -= OnDash;
 
     }
 
@@ -107,7 +111,7 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.transform.rotation = Quaternion.Lerp(stateMachine.transform.rotation,Quaternion.LookRotation(movement),deltatime* stateMachine.RotationDamping);            
     }
 
-    //SLOPETEST
+   
     
 
     private void OnJump()
@@ -118,24 +122,12 @@ public class PlayerFreeLookState : PlayerBaseState
 
     private Vector3 CalculateSlope(Vector3 movement)
     {
+        return Vector3.ProjectOnPlane(movement, stateMachine.ForceReceiver.HitInfo.normal).normalized;
+    }
 
-        Vector3 calculatedMovement = movement;
-        if (stateMachine.ForceReceiver.IsGrounded)
-        {
-
-            Vector3 localGroundCheckHitNormal = stateMachine.CharacterController.transform.InverseTransformDirection(groundCheckHit.normal);
-
-            float groundSlopeAngle = Vector3.Angle(localGroundCheckHitNormal, stateMachine.CharacterController.transform.up);
-
-            if (groundSlopeAngle != 0f)
-            {
-                Quaternion slopeAngleRotation = Quaternion.FromToRotation(stateMachine.CharacterController.transform.up, localGroundCheckHitNormal);
-
-                calculatedMovement = slopeAngleRotation * calculatedMovement;
-
-            }
-        }
-        return calculatedMovement;
+    private void OnDash()
+    {
+        stateMachine.SwitchState(new PlayerDodgeState(stateMachine));
 
     }
 

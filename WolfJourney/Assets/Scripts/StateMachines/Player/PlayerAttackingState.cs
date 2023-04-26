@@ -9,7 +9,8 @@ public class PlayerAttackingState : PlayerBaseState
 
     private float previousFrameTime;
     private bool alreadyAppliedForce;
-
+    private bool alreadyFaceAttack;
+    
     private Attack attack;
 
     public PlayerAttackingState(PlayerStateMachine stateMachine,int attackIndex) : base(stateMachine)
@@ -20,7 +21,7 @@ public class PlayerAttackingState : PlayerBaseState
 
     public override void Enter()
     {
-   
+       
 
         stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, attack.TransitionDuration);
 
@@ -32,9 +33,10 @@ public class PlayerAttackingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
+       
         Move(deltaTime);
 
-
+        CalculateAttackDirection(deltaTime);
 
         float normalizedTime = GetNormalizedTime();
 
@@ -43,6 +45,8 @@ public class PlayerAttackingState : PlayerBaseState
             if (normalizedTime >= attack.ForceTime)
             {
                 TryApplyForce();
+              
+               
             }
 
 
@@ -65,7 +69,7 @@ public class PlayerAttackingState : PlayerBaseState
 
     public override void Exit()
     {
-  
+        
     }
 
     private void TryComboAttack(float normalizedTime)
@@ -108,5 +112,16 @@ public class PlayerAttackingState : PlayerBaseState
         }
     }
 
-    
+    private void CalculateAttackDirection(float deltaTime)
+    {
+
+        Vector3 faceMove = stateMachine.MainCameraTransform.forward;
+        faceMove.y = 0f;
+        faceMove.Normalize();      
+      
+            stateMachine.transform.rotation = Quaternion.Lerp(stateMachine.transform.rotation, Quaternion.LookRotation(faceMove), deltaTime * stateMachine.RotationDamping);
+        
+      
+    }
+
 }

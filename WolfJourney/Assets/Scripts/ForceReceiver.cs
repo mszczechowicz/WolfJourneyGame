@@ -35,9 +35,8 @@ public class ForceReceiver : MonoBehaviour
     private void Update()
     {
         //Widocznoœæ ISGROUNDED  w inspektorze
-        //IsGroundedCheck = characterController.isGrounded;
 
-        if (verticalVelocity < 0f && characterController.isGrounded)
+        if (verticalVelocity < 0f && IsGrounded)       
         {
             verticalVelocity = Physics.gravity.y * Time.deltaTime;
         }
@@ -47,7 +46,7 @@ public class ForceReceiver : MonoBehaviour
         }
         
         impact = Vector3.SmoothDamp(impact, Vector3.zero, ref dampingVelocity, drag);
-       
+        Debug.Log(verticalVelocity);
 
 
 
@@ -72,6 +71,8 @@ public class ForceReceiver : MonoBehaviour
         verticalVelocity += jumpForce;
     
     }
+
+   
 
     private float currenRayDistance;
     private bool IsGroundedCheck()

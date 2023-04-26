@@ -19,8 +19,10 @@ public class PlayerStateMachine : StateMachine
 
     [field: SerializeField] public float JumpForce { get; private set; }
 
-    [field: SerializeField] public float AirMovementSpeed { get; private set; }
+    [field: SerializeField] public float DashForce { get; private set; }
 
+    [field: SerializeField] public float AirMovementSpeed { get; private set; }
+  
     [field: SerializeField] public Attack[] Attacks { get; private set; }
 
     public Transform MainCameraTransform { get; private set; }
