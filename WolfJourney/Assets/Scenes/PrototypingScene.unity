@@ -1141,11 +1141,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1424720340907234514, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000018870892
+      value: 0.000000018870892
       objectReference: {fileID: 0}
     - target: {fileID: 1424720340907234514, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000037368117
+      value: -0.0000000037368117
       objectReference: {fileID: 0}
     - target: {fileID: 1424720341252054604, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
       propertyPath: m_RootOrder
@@ -1302,6 +1302,22 @@ PrefabInstance:
     - target: {fileID: 3004417440614359016, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
       propertyPath: <JumpForce>k__BackingField
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004417440614359016, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
+      propertyPath: <DodgeForce>k__BackingField
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004417440614359016, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
+      propertyPath: <DodgeLength>k__BackingField
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004417440614359016, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
+      propertyPath: <DodgeCooldown>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004417440614359016, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
+      propertyPath: <DodgeDuration>k__BackingField
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3004417440614359016, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
       propertyPath: <RotationDamping>k__BackingField

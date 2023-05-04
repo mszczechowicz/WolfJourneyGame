@@ -19,10 +19,18 @@ public class PlayerStateMachine : StateMachine
 
     [field: SerializeField] public float JumpForce { get; private set; }
 
-    [field: SerializeField] public float DashForce { get; private set; }
+    [field: SerializeField] public float DodgeForce { get; private set; }
+    [field: SerializeField] public float DodgeDuration { get; private set; }
 
+    [field: SerializeField] public float DodgeLength { get; private set; }
+
+    [field: SerializeField] public float DodgeCooldown { get; private set; }
     [field: SerializeField] public float AirMovementSpeed { get; private set; }
-  
+
+    public float PreviousDodgeTime { get; private set; } = Mathf.NegativeInfinity;
+
+
+
     [field: SerializeField] public Attack[] Attacks { get; private set; }
 
     public Transform MainCameraTransform { get; private set; }
@@ -39,5 +47,9 @@ public class PlayerStateMachine : StateMachine
         SwitchState(new PlayerFreeLookState(this));
     }
 
+    public void SetDodgeTime(float dodgeTime)
+    {
+        PreviousDodgeTime = dodgeTime;
+    }
    
 }
