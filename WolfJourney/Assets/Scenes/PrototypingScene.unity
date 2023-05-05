@@ -1214,11 +1214,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1424720340907234514, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000018870892
+      value: -0.000000018870892
       objectReference: {fileID: 0}
     - target: {fileID: 1424720340907234514, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000037368117
+      value: 0.0000000037368117
       objectReference: {fileID: 0}
     - target: {fileID: 1424720341252054604, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
       propertyPath: m_RootOrder
@@ -1318,11 +1318,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1424720342252692550, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000016746096
+      value: 0.000000016746089
       objectReference: {fileID: 0}
     - target: {fileID: 1424720342252692550, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000039532173
+      value: -0.0000000039532155
       objectReference: {fileID: 0}
     - target: {fileID: 1424720342866011991, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1378,7 +1378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3004417440614359016, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
       propertyPath: <DodgeForce>k__BackingField
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3004417440614359016, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
       propertyPath: <DodgeLength>k__BackingField
@@ -1519,6 +1519,14 @@ PrefabInstance:
     - target: {fileID: 3004417440614359018, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
       propertyPath: m_MinMoveDistance
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004417440614359019, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004417440614359019, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3004417440614359019, guid: a2644c6005994784bbd55ca1127517cc, type: 3}
       propertyPath: m_ApplyRootMotion

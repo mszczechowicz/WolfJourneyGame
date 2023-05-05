@@ -9,16 +9,18 @@ using UnityEngine;
 
 public class PlayerFreeLookState : PlayerBaseState
 {
+
+
     //Stringtohash Szybsze w obliczaniu ni¿ string
     private readonly int VelocityHash = Animator.StringToHash("Velocity");
     private readonly int DodgeHash = Animator.StringToHash("Dodge");
     private readonly int DashHash = Animator.StringToHash("Dash");
 
     private const float AnimatorDampTime = 0.1f;
-
+    
 
     private readonly int FreeLookHash = Animator.StringToHash("PlayerFreeLookState");
- 
+    
 
     private const float CrossFadeDuration = 0.1f;
 
@@ -59,25 +61,28 @@ public class PlayerFreeLookState : PlayerBaseState
         }
 
 
-        Vector3 movement = CalculateMovement(deltaTime);
+        Vector3 movement = CalculateMovement(deltaTime) ;
 
 
 
 
         Move(CalculateSlope(movement) * stateMachine.FreeLookMovementSpeed, deltaTime);
 
-        
-       
 
-        if(stateMachine.InputHandler.MovementValue == Vector2.zero)
+
+
+
+
+        if (stateMachine.InputHandler.MovementValue == Vector2.zero)
         {
             stateMachine.Animator.SetFloat(VelocityHash, 0, AnimatorDampTime, deltaTime);
-            
-            return;       
+
+            return;
         }
         stateMachine.Animator.SetFloat(VelocityHash, 1, AnimatorDampTime, deltaTime);
 
-       
+        
+
         FaceMovementDirection(movement, deltaTime);
 
         Debug.Log(movement);
