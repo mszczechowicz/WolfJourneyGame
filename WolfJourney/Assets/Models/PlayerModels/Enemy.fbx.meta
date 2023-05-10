@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 41287787964f91441b5153e87a70d178
+guid: 9a13b7bb7eb308a45a342734788c54e2
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.001
-    second: {fileID: 2100000, guid: c6a9afe40ae496a4cbcb65861735087d, type: 2}
+    second: {fileID: 2100000, guid: 4ef3f232cc17312449c17704ceee7a1b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.002
-    second: {fileID: 2100000, guid: c6a9afe40ae496a4cbcb65861735087d, type: 2}
+    second: {fileID: 2100000, guid: 4ef3f232cc17312449c17704ceee7a1b, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -315,18 +315,18 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Ryze(Clone)
+    - name: Enemy(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: ryze base.002
-      parentName: Ryze(Clone)
+      parentName: Enemy(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
       scale: {x: 100, y: 100, z: 100}
     - name: mixamorig:Hips
-      parentName: Ryze(Clone)
+      parentName: Enemy(Clone)
       position: {x: -0.00002127505, y: 1.0683486, z: 0.015204289}
       rotation: {x: 0.000006653375, y: -0.0000067736205, z: 0.00020888454, w: 1}
       scale: {x: 1, y: 1, z: 1}

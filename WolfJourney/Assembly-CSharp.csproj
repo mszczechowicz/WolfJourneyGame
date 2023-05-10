@@ -73,6 +73,10 @@
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerBaseState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerStateMachine.cs" />
     <Compile Include="Assets\Scripts\Controls.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyStateMachine.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyBaseState.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyIdleState.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyChasingState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

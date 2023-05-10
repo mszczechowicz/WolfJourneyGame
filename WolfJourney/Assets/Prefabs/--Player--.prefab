@@ -598,7 +598,7 @@ GameObject:
   - component: {fileID: 240859529733392563}
   m_Layer: 0
   m_Name: --Player--
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1463,7 +1463,7 @@ GameObject:
   - component: {fileID: 3375805844879012431}
   m_Layer: 0
   m_Name: Ryze
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1741,8 +1741,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e73e8b089e18cd741acc25af192a7856, type: 2}
-  - {fileID: 2100000, guid: e73e8b089e18cd741acc25af192a7856, type: 2}
+  - {fileID: 2100000, guid: c6a9afe40ae496a4cbcb65861735087d, type: 2}
+  - {fileID: 2100000, guid: c6a9afe40ae496a4cbcb65861735087d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

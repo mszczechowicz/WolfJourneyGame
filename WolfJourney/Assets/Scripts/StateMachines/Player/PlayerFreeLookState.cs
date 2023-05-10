@@ -85,7 +85,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
         FaceMovementDirection(movement, deltaTime);
 
-        Debug.Log(movement);
+       
 
 
 
