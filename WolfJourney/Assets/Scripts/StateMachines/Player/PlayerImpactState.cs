@@ -9,7 +9,7 @@ public class PlayerImpactState : PlayerBaseState
     private readonly int ImpactHash = Animator.StringToHash("Impact");
     private const float CrossFadeDuration = 0.1f;
 
-    private float duration = 1f;
+    private float duration = 0.1f;
     public override void Enter()
     {
         stateMachine.Animator.CrossFadeInFixedTime(ImpactHash, CrossFadeDuration);

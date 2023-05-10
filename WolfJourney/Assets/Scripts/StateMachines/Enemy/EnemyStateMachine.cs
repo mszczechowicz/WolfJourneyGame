@@ -23,12 +23,12 @@ public class EnemyStateMachine : StateMachine
 
     [field: SerializeField] public int AttackKnockback { get; private set; }
 
-    public GameObject Player { get; private set; }
+    public Health Player { get; private set; }
 
 
     private void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
 
         Agent.updatePosition = false;
         Agent.updateRotation = false;
@@ -39,17 +39,25 @@ public class EnemyStateMachine : StateMachine
     private void OnEnable()
     {
         Health.OnTakeDamage += HandleTakeDamage;
+        Health.OnDie += HandleIsDead;
     }
 
     private void OnDisable()
     {
         Health.OnTakeDamage -= HandleTakeDamage;
+        Health.OnDie -= HandleIsDead;
     }
 
     private void HandleTakeDamage()
     { 
         SwitchState(new EnemyImpactState(this));
     }
+
+    private void HandleIsDead()
+    {
+        SwitchState(new EnemyDeadState(this));
+    }
+
 
     private void OnDrawGizmosSelected()
     {

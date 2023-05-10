@@ -10,6 +10,8 @@ public class EnemyAttackingState : EnemyBaseState
     private const float CrossFadeDuration = 0.1f;
     public override void Enter()
     {
+        FacePlayer();
+
         stateMachine.Weapon.SetAttack(stateMachine.AttackDamage, stateMachine.AttackKnockback);
 
         stateMachine.Animator.CrossFadeInFixedTime(AttackHash, CrossFadeDuration);

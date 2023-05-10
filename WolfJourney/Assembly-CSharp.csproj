@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ForceReceiver.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyImpactState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyIdleState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyStateMachine.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyAttackingState.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Assets\Scripts\WeaponDamage.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerJumpingState.cs" />
     <Compile Include="Assets\Scripts\WeaponHandler.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Player\PlayerImpactState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyBaseState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerFreeLookState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerAttackingState.cs" />
@@ -78,8 +80,8 @@
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerBaseState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerStateMachine.cs" />
     <Compile Include="Assets\Scripts\Controls.cs" />
-    <Compile Include="Assets\Scripts\StateMachines\Player\PlayerImpactState.cs" />
-    <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyImpactState.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Player\PlayerDeadState.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyDeadState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
