@@ -1461,6 +1461,7 @@ GameObject:
   - component: {fileID: 4117414120051067156}
   - component: {fileID: 4117414120051067157}
   - component: {fileID: 3375805844879012431}
+  - component: {fileID: 6598196964224236674}
   m_Layer: 0
   m_Name: Ryze
   m_TagString: Player
@@ -1503,6 +1504,7 @@ MonoBehaviour:
   <CharacterController>k__BackingField: {fileID: 4117414120051067157}
   <Animator>k__BackingField: {fileID: 4117414120051067156}
   <ForceReceiver>k__BackingField: {fileID: 8565966180092329330}
+  <Health>k__BackingField: {fileID: 6598196964224236674}
   <FreeLookMovementSpeed>k__BackingField: 8
   <RotationDamping>k__BackingField: 13
   <JumpForce>k__BackingField: 15
@@ -1518,24 +1520,33 @@ MonoBehaviour:
     <ComboAttackTime>k__BackingField: 0.6
     <ForceTime>k__BackingField: 0.1
     <Force>k__BackingField: 10
+    <Damage>k__BackingField: 10
+    <KnockBack>k__BackingField: 10
   - <AnimationName>k__BackingField: Attack2CUT
     <TransitionDuration>k__BackingField: 0.4
     <ComboStateIndex>k__BackingField: 2
     <ComboAttackTime>k__BackingField: 0.6
     <ForceTime>k__BackingField: 0.1
     <Force>k__BackingField: 10
+    <Damage>k__BackingField: 10
+    <KnockBack>k__BackingField: 10
   - <AnimationName>k__BackingField: Attack3CUT
     <TransitionDuration>k__BackingField: 0.4
     <ComboStateIndex>k__BackingField: 3
     <ComboAttackTime>k__BackingField: 0.6
     <ForceTime>k__BackingField: 0.1
     <Force>k__BackingField: 10
+    <Damage>k__BackingField: 15
+    <KnockBack>k__BackingField: 15
   - <AnimationName>k__BackingField: Attack4
     <TransitionDuration>k__BackingField: 0.4
     <ComboStateIndex>k__BackingField: 3
     <ComboAttackTime>k__BackingField: 1
     <ForceTime>k__BackingField: 0.5
     <Force>k__BackingField: 15
+    <Damage>k__BackingField: 20
+    <KnockBack>k__BackingField: 20
+  <Weapon>k__BackingField: {fileID: 230474255750792754}
 --- !u!114 &4117414120051067158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1563,6 +1574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 4117414120051067157}
+  agent: {fileID: 0}
   drag: 0.1
   isGroundedCheck: 1
   GroundCheckLocation: {fileID: 8416932108136245103}
@@ -1625,6 +1637,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponLogic: {fileID: 7852524609704201386}
+--- !u!114 &6598196964224236674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3632204773708665771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 586d9aa6996c769459f2163652d0f7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &4374795504269552828
 GameObject:
   m_ObjectHideFlags: 0
@@ -2166,7 +2191,6 @@ GameObject:
   - component: {fileID: 1623051191179040452}
   - component: {fileID: 230474255750792754}
   - component: {fileID: 5472996413480474963}
-  - component: {fileID: 1194065149223032573}
   m_Layer: 0
   m_Name: WeaponLogic
   m_TagString: Untagged
@@ -2232,20 +2256,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &1194065149223032573
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7852524609704201386}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.14
-  m_Height: 1.42
-  m_Direction: 0
-  m_Center: {x: -0.6, y: 0, z: 0}
 --- !u!1 &8105462982228168743
 GameObject:
   m_ObjectHideFlags: 0

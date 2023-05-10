@@ -29,7 +29,15 @@ public class EnemyChasingState : EnemyBaseState
             stateMachine.SwitchState(new EnemyIdleState(stateMachine));
             return;
         }
+        else if (IsInAttackingRange())
+        {
+            stateMachine.SwitchState(new EnemyAttackingState(stateMachine));
+            return;
+        }
+
+
         MoveToPlayer(deltaTime);
+        FacePlayer();
 
         stateMachine.Animator.SetFloat(SpeedHash, 1f, AnimatorDampTime, deltaTime);
     }
@@ -41,13 +49,24 @@ public class EnemyChasingState : EnemyBaseState
     
 
     private void MoveToPlayer(float deltatime)
-    { 
-        stateMachine.Agent.destination = stateMachine.Player.transform.position;
+    {
+        if (stateMachine.Agent.isOnNavMesh)
+        {
+            stateMachine.Agent.destination = stateMachine.Player.transform.position;
 
-        Move(stateMachine.Agent.desiredVelocity.normalized * stateMachine.MovementSpeed,deltatime);
+            Move(stateMachine.Agent.desiredVelocity.normalized * stateMachine.MovementSpeed, deltatime);
+        }
+
+    
 
         stateMachine.Agent.velocity = stateMachine.CharacterController.velocity;
     }
 
+    private bool IsInAttackingRange()
+    { 
+        float playerDistanceSqr = (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;
 
+
+        return playerDistanceSqr <= stateMachine.AttackRange * stateMachine.AttackRange;
+    }
 }

@@ -4,10 +4,12 @@ using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ForceReceiver : MonoBehaviour
 {
     [SerializeField] private CharacterController characterController;
+    [SerializeField] private NavMeshAgent agent;
     [SerializeField] private float drag = 0.3f;
     [SerializeField] private bool isGroundedCheck;
     [SerializeField] private Transform GroundCheckLocation;
@@ -46,9 +48,14 @@ public class ForceReceiver : MonoBehaviour
         }
         
         impact = Vector3.SmoothDamp(impact, Vector3.zero, ref dampingVelocity, drag);
-       
-
-
+        if (agent != null)
+        {
+            if (impact.sqrMagnitude < 0.2f * 0.2f)
+            {
+                impact = Vector3.zero;
+                agent.enabled = true;
+            }
+        }
 
 
     }
@@ -62,6 +69,8 @@ public class ForceReceiver : MonoBehaviour
     public void AddForce(Vector3 force)
     {
         impact += force;
+        if (agent != null)
+        { agent.enabled = false; }
     }
     public void AddDodgeForce(Vector3 force)
     {

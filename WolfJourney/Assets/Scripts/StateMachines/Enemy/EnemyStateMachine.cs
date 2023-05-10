@@ -13,7 +13,15 @@ public class EnemyStateMachine : StateMachine
 
     [field: SerializeField] public NavMeshAgent Agent { get; private set; }
 
+    [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public float MovementSpeed { get; private set; }
+
+    [field: SerializeField] public float AttackRange { get; private set; }
+
+    [field: SerializeField] public WeaponDamage Weapon { get; private set; }
+    [field: SerializeField] public int AttackDamage { get; private set; }
+
+    [field: SerializeField] public int AttackKnockback { get; private set; }
 
     public GameObject Player { get; private set; }
 
@@ -27,6 +35,22 @@ public class EnemyStateMachine : StateMachine
 
         SwitchState(new EnemyIdleState(this));
     }
+
+    private void OnEnable()
+    {
+        Health.OnTakeDamage += HandleTakeDamage;
+    }
+
+    private void OnDisable()
+    {
+        Health.OnTakeDamage -= HandleTakeDamage;
+    }
+
+    private void HandleTakeDamage()
+    { 
+        SwitchState(new EnemyImpactState(this));
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
