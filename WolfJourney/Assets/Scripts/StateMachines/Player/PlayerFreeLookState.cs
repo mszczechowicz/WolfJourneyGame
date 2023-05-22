@@ -37,7 +37,7 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.Animator.CrossFadeInFixedTime(FreeLookHash, CrossFadeDuration);
 
         stateMachine.InputHandler.JumpEvent += OnJump;
-        stateMachine.InputHandler.DashEvent += OnDash;
+        stateMachine.InputHandler.DashEvent += OnDodge;
     }
 
 
@@ -94,7 +94,7 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Exit()
     {
         stateMachine.InputHandler.JumpEvent -= OnJump;
-        stateMachine.InputHandler.DashEvent -= OnDash;
+        stateMachine.InputHandler.DashEvent -= OnDodge;
 
     }
     #region Movement_Data
@@ -112,35 +112,35 @@ public class PlayerFreeLookState : PlayerBaseState
         forward.Normalize();
         right.Normalize();
         
-        if (remainingDodgeTime > 0f)
-        {
+        //if (remainingDodgeTime > 0f)
+        //{
            
-            //movement += stateMachine.MainCameraTransform.right * dodgingDirectionInput.x * stateMachine.DodgeLength / stateMachine.DodgeDuration;
-            //movement += stateMachine.MainCameraTransform.forward * dodgingDirectionInput.y * stateMachine.DodgeLength / stateMachine.DodgeDuration;
-            movement = forward * stateMachine.InputHandler.MovementValue.y + right * stateMachine.InputHandler.MovementValue.x;
-            if (movement == Vector3.zero)
-            {
-                stateMachine.Animator.Play(DashHash);
-                stateMachine.ForceReceiver.AddDodgeForce(stateMachine.transform.forward * stateMachine.DodgeForce);
-            }
-            else
-            {
-                stateMachine.Animator.Play(DodgeHash);
-                stateMachine.ForceReceiver.AddDodgeForce(stateMachine.transform.forward * stateMachine.DodgeForce);
-            }
+        //    //movement += stateMachine.MainCameraTransform.right * dodgingDirectionInput.x * stateMachine.DodgeLength / stateMachine.DodgeDuration;
+        //    //movement += stateMachine.MainCameraTransform.forward * dodgingDirectionInput.y * stateMachine.DodgeLength / stateMachine.DodgeDuration;
+        //    movement = forward * stateMachine.InputHandler.MovementValue.y + right * stateMachine.InputHandler.MovementValue.x;
+        //    if (movement == Vector3.zero)
+        //    {
+        //        stateMachine.Animator.Play(DashHash);
+        //        stateMachine.ForceReceiver.AddDodgeForce(stateMachine.transform.forward * stateMachine.DodgeForce);
+        //    }
+        //    else
+        //    {
+        //        stateMachine.Animator.Play(DodgeHash);
+        //        stateMachine.ForceReceiver.AddDodgeForce(stateMachine.transform.forward * stateMachine.DodgeForce);
+        //    }
            
             
-            remainingDodgeTime = Mathf.Max(remainingDodgeTime - deltaTime, 0f);
-            //Debug.Log(movement);
+        //    //remainingDodgeTime = Mathf.Max(remainingDodgeTime - deltaTime, 0f);
+        //    //Debug.Log(movement);
                     
-        }
-        else
-        {
+        //}
+        //else
+        
             movement = forward * stateMachine.InputHandler.MovementValue.y + right * stateMachine.InputHandler.MovementValue.x;
             //Debug.Log("NORMAL STATE");
 
            
-        }
+        
         return movement;
 
      
@@ -164,16 +164,16 @@ public class PlayerFreeLookState : PlayerBaseState
     #region Dash_Data
 
 
-    private void OnDash()
+    private void OnDodge()
     {
-      
-        if (Time.time - stateMachine.PreviousDodgeTime < stateMachine.DodgeCooldown) { return; }
-        
-        stateMachine.SetDodgeTime(Time.time);
-       
-        dodgingDirectionInput = stateMachine.InputHandler.MovementValue;
-        remainingDodgeTime = stateMachine.DodgeDuration;
-
+        if (stateMachine.InputHandler.MovementValue == Vector2.zero)
+        {
+            return;
+        }
+        else
+        {
+            stateMachine.SwitchState(new PlayerDodgeState(stateMachine, stateMachine.InputHandler.MovementValue.normalized));
+        }
     }
 
     #endregion

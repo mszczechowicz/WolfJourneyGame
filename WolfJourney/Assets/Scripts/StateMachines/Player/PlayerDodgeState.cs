@@ -9,12 +9,19 @@ public class PlayerDodgeState : PlayerBaseState
 
     private const float CrossFadeDuration = 0.1f;
 
-    public PlayerDodgeState(PlayerStateMachine stateMachine) : base(stateMachine) { }
+    private float remainingDodgeTime;
+
+    private Vector3 dodgingDirectionInput;
+    public PlayerDodgeState(PlayerStateMachine stateMachine, Vector3 dodgingDirectionInput) : base(stateMachine) 
+    {
+        this.dodgingDirectionInput = dodgingDirectionInput;
+    }
 
     
 
     public override void Enter()
     {
+        remainingDodgeTime = stateMachine.DodgeDuration;
      
         stateMachine.Animator.CrossFadeInFixedTime(DodgeHash, CrossFadeDuration);
 
@@ -22,39 +29,36 @@ public class PlayerDodgeState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        Move(deltaTime);
-        Vector3 dashDirection = CalculateDodgeDirection();
+        Vector3 movement = new Vector3();
+
+        if (dodgingDirectionInput == Vector3.zero)
+        {
+            movement += stateMachine.MainCameraTransform.forward * dodgingDirectionInput.y * stateMachine.DodgeLength / stateMachine.DodgeDuration;
+        }
+        else
+        {
+            movement += stateMachine.MainCameraTransform.right * dodgingDirectionInput.x * stateMachine.DodgeLength / stateMachine.DodgeDuration;
+            movement += stateMachine.MainCameraTransform.forward * dodgingDirectionInput.y * stateMachine.DodgeLength / stateMachine.DodgeDuration;
+
+        }
+
+        Move(movement,deltaTime);
 
 
 
 
-
-
-
-
-        ReturnToLocomotion();
+        remainingDodgeTime -= deltaTime;
+        if (remainingDodgeTime <= 0f)
+        {
+            stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+        }
     }
 
     public override void Exit()
     {
        
     }
-    private Vector3 CalculateDodgeDirection()
-    {
-        Vector3 forward = stateMachine.MainCameraTransform.forward;
-        Vector3 right = stateMachine.MainCameraTransform.right;
+    
 
-        forward.y = 0f;
-        right.y = 0f;
-
-        forward.Normalize();
-        right.Normalize();
-
-        return forward * stateMachine.InputHandler.MovementValue.y + right * stateMachine.InputHandler.MovementValue.x;
-
-
-    }
-
-
-
+   
 }

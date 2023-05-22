@@ -26,7 +26,7 @@ public class PlayerStateMachine : StateMachine
 
     [field: SerializeField] public float DodgeLength { get; private set; }
 
-    [field: SerializeField] public float DodgeCooldown { get; private set; }
+  
     [field: SerializeField] public float AirMovementSpeed { get; private set; }
 
     public float PreviousDodgeTime { get; private set; } = Mathf.NegativeInfinity;
@@ -87,9 +87,6 @@ public class PlayerStateMachine : StateMachine
 
 
 
-    public void SetDodgeTime(float dodgeTime)
-    {
-        PreviousDodgeTime = dodgeTime;
-    }
+   
    
 }

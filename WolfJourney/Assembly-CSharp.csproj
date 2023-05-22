@@ -74,14 +74,14 @@
     <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyBaseState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerFreeLookState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerAttackingState.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyDeadState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyChasingState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\StateMachine.cs" />
+    <Compile Include="Assets\Scripts\StateMachines\Player\PlayerDeadState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerDodgeState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerBaseState.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerStateMachine.cs" />
     <Compile Include="Assets\Scripts\Controls.cs" />
-    <Compile Include="Assets\Scripts\StateMachines\Player\PlayerDeadState.cs" />
-    <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyDeadState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
