@@ -2,52 +2,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerFallingState : PlayerBaseState
+public class PlayerMidAirJumpingState : PlayerBaseState
 {
+    private readonly int JumpHash = Animator.StringToHash("Jump");
 
-    private readonly int IdleFallHash = Animator.StringToHash("IdleFall");
+    private const float CrossFadeDuration = 0.1f;
 
-    private const float CrossFadeDuration = 0.5f;
-
-
-    public PlayerFallingState(PlayerStateMachine stateMachine,bool IsJumped) : base(stateMachine)
-    { 
-    IsMidAirJumped = IsJumped;
-    }
+    public PlayerMidAirJumpingState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
 
 
     public override void Enter()
     {
-        stateMachine.InputHandler.JumpEvent += OnJump;
-        
-        stateMachine.Animator.CrossFadeInFixedTime(IdleFallHash, CrossFadeDuration);
+        IsMidAirJumped = true;
+
+        stateMachine.ForceReceiver.Jump(stateMachine.JumpForce);
+
+        stateMachine.Animator.CrossFadeInFixedTime(JumpHash, CrossFadeDuration);
+      
+
 
     }
 
     public override void Tick(float deltaTime)
     {
 
-        if (stateMachine.ForceReceiver.IsGrounded)
-        {
-            ReturnToLocomotion();
-        }
-
 
         Vector3 inAirMovement = CalculateMovementInAir();
+
         FaceMovementDirectionInAir(inAirMovement, deltaTime);
 
         Move(inAirMovement * stateMachine.AirMovementSpeed, deltaTime);
+
         stateMachine.transform.Translate(inAirMovement * deltaTime);
-      
+
+
+
+
+
+
+        if (stateMachine.CharacterController.velocity.y <= 0)
+        {
+            stateMachine.SwitchState(new PlayerFallingState(stateMachine, IsMidAirJumped));
+            return;
+        }
+
 
 
     }
 
     public override void Exit()
     {
-        stateMachine.InputHandler.JumpEvent -= OnJump;
-       
+        IsMidAirJumped = true;
     }
 
     private Vector3 CalculateMovementInAir()
@@ -61,6 +67,7 @@ public class PlayerFallingState : PlayerBaseState
         forward.Normalize();
         right.Normalize();
 
+
         return forward * stateMachine.InputHandler.MovementValue.y + right * stateMachine.InputHandler.MovementValue.x;
 
 
@@ -68,23 +75,13 @@ public class PlayerFallingState : PlayerBaseState
 
     private void FaceMovementDirectionInAir(Vector3 movement, float deltatime)
     {
-
         if (movement != Vector3.zero)
         {
 
             stateMachine.transform.rotation = Quaternion.Lerp
                 (stateMachine.transform.rotation, Quaternion.LookRotation(movement), deltatime * stateMachine.RotationDamping);
         }
-    }
 
-    private void OnJump()
-    {
-        if (!IsMidAirJumped)
-        {
-            
-            stateMachine.SwitchState(new PlayerMidAirJumpingState(stateMachine));
-            return;
-        }
-        return;
     }
+    
 }

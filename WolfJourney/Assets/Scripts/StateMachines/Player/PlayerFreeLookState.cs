@@ -56,7 +56,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
         if (!stateMachine.ForceReceiver.IsGrounded)
         {
-            stateMachine.SwitchState(new PlayerFallingState(stateMachine));
+            stateMachine.SwitchState(new PlayerFallingState(stateMachine,IsMidAirJumped));
             return;
         }
 

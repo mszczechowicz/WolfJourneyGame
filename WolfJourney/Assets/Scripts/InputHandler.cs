@@ -10,6 +10,8 @@ public class InputHandler : MonoBehaviour, Controls.IPlayerActions
 
     public Vector2 MovementValue { get; private set; }
 
+    public Vector2 CameraValue { get; private set; }
+
     public event Action DashEvent;
 
     public event Action JumpEvent;
@@ -66,11 +68,11 @@ public class InputHandler : MonoBehaviour, Controls.IPlayerActions
 
     public void OnLook(InputAction.CallbackContext context)
     {
-       //Controlled by Cinemachine
-    } 
-   
+        CameraValue = context.ReadValue<Vector2>();
+    }
 
-   
+    
+
 
     public void OnAttack(InputAction.CallbackContext context)
     {

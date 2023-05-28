@@ -6,9 +6,13 @@ public abstract class PlayerBaseState : State
 {
     protected PlayerStateMachine stateMachine;
 
+    protected bool IsMidAirJumped;
+
+
     public PlayerBaseState (PlayerStateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
+        this.IsMidAirJumped = false;
 
     }
 

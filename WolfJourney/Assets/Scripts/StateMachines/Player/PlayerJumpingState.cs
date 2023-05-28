@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerJumpingState : PlayerBaseState
 {
 
-    private readonly int JumpHash = Animator.StringToHash("Jump");
+    private readonly int JumpHash = Animator.StringToHash("SecondJump");
 
     private const float CrossFadeDuration = 0.1f;
 
@@ -15,10 +15,15 @@ public class PlayerJumpingState : PlayerBaseState
 
     public override void Enter()
     {
+        IsMidAirJumped = false;
        
         stateMachine.ForceReceiver.Jump(stateMachine.JumpForce);
         
         stateMachine.Animator.CrossFadeInFixedTime(JumpHash, CrossFadeDuration);
+
+        stateMachine.InputHandler.JumpEvent += OnJump;
+        
+
 
     }
 
@@ -39,9 +44,9 @@ public class PlayerJumpingState : PlayerBaseState
 
 
 
-        if (stateMachine.CharacterController.velocity.y <= 0)
+        if (stateMachine.CharacterController.velocity.y <= 5)
         {
-            stateMachine.SwitchState(new PlayerFallingState(stateMachine));
+            stateMachine.SwitchState(new PlayerFallingState(stateMachine,IsMidAirJumped));
             return;
         }
         
@@ -51,7 +56,7 @@ public class PlayerJumpingState : PlayerBaseState
 
     public override void Exit()
     {
-       
+        stateMachine.InputHandler.JumpEvent -= OnJump;
     }
 
     private Vector3 CalculateMovementInAir()
@@ -80,5 +85,9 @@ public class PlayerJumpingState : PlayerBaseState
                 (stateMachine.transform.rotation, Quaternion.LookRotation(movement), deltatime * stateMachine.RotationDamping);
         }
 
+    }
+    private void OnJump()
+    {
+        stateMachine.SwitchState(new PlayerMidAirJumpingState(stateMachine));
     }
 }
