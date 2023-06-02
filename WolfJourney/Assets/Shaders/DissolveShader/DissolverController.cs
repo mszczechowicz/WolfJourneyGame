@@ -4,7 +4,7 @@ using UnityEngine.VFX;
 public class DissolverController : MonoBehaviour
 {
 
-    public MeshRenderer skinnedMesh; // ewentualnie skinned/MeshRenderer ( to co trzyma nasza teksture )
+    public SkinnedMeshRenderer skinnedMesh; // ewentualnie skinned/MeshRenderer ( to co trzyma nasza teksture )
     public VisualEffect VFXGraph;
     public float dissolveRate = 0.0125f;
     public float refreshRate = 0.025f;
@@ -28,7 +28,7 @@ public class DissolverController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.E))
             {
                 StartCoroutine(DissolveCo());
             }
