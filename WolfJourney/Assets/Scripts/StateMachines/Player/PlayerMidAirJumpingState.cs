@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerMidAirJumpingState : PlayerBaseState
 {
-    private readonly int JumpHash = Animator.StringToHash("Jump");
+    private readonly int JumpHash = Animator.StringToHash("SecondJump");
 
     private const float CrossFadeDuration = 0.1f;
+
 
     public PlayerMidAirJumpingState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
@@ -16,7 +17,12 @@ public class PlayerMidAirJumpingState : PlayerBaseState
     {
         IsMidAirJumped = true;
 
-        stateMachine.ForceReceiver.Jump(stateMachine.JumpForce);
+        stateMachine.ForceReceiver.VerticalVelocity = 0f;
+
+        stateMachine.ForceReceiver.AddForce(stateMachine.transform.forward * 10f);
+       
+        stateMachine.ForceReceiver.MidAirJump(stateMachine.MidAirJumpForce);
+        
 
         stateMachine.Animator.CrossFadeInFixedTime(JumpHash, CrossFadeDuration);
       
@@ -26,8 +32,8 @@ public class PlayerMidAirJumpingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-
-
+       
+       
         Vector3 inAirMovement = CalculateMovementInAir();
 
         FaceMovementDirectionInAir(inAirMovement, deltaTime);

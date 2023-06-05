@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerJumpingState : PlayerBaseState
 {
 
-    private readonly int JumpHash = Animator.StringToHash("SecondJump");
+    private readonly int JumpHash = Animator.StringToHash("Jump");
 
     private const float CrossFadeDuration = 0.1f;
 

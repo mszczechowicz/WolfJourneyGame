@@ -26,6 +26,7 @@ public class ForceReceiver : MonoBehaviour
 
    
     private float verticalVelocity;
+    public float VerticalVelocity { get => verticalVelocity; set => verticalVelocity = value; }
 
     public Vector3 Movement => impact + Vector3.up * verticalVelocity;
 
@@ -34,6 +35,7 @@ public class ForceReceiver : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(verticalVelocity);
         //Widocznoœæ ISGROUNDED  w inspektorze
 
         if (verticalVelocity < 0f && IsGrounded)       
@@ -85,11 +87,16 @@ public class ForceReceiver : MonoBehaviour
 
     public void Jump(float jumpForce)
     {
-        verticalVelocity = jumpForce;
+        verticalVelocity += jumpForce;
     
     }
+    public void MidAirJump(float jumpForce)
+    {
+        verticalVelocity += jumpForce ;
 
-   
+    }
+
+
 
     private float currenRayDistance;
     private bool IsGroundedCheck()
