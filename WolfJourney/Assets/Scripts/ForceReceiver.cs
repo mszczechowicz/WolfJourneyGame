@@ -35,7 +35,7 @@ public class ForceReceiver : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(verticalVelocity);
+       
         //Widocznoœæ ISGROUNDED  w inspektorze
 
         if (verticalVelocity < 0f && IsGrounded)       

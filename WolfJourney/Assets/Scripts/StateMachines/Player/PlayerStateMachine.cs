@@ -54,22 +54,26 @@ public class PlayerStateMachine : StateMachine
     }
 
     private void OnEnable()
-    {
-        Health.OnTakeDamage += HandleTakeDamage;
+    {   //--ImpactStateLogic komentujê do czas a¿ zaimplementujemy "HeavyAttack dla bossów"
+        //Health.OnTakeDamage += HandleTakeDamage;
+        //---------------------------------------------------------------------------------
         Health.OnDie += HandleIsDead;
     }
 
     private void OnDisable()
     {
-        Health.OnTakeDamage -= HandleTakeDamage;
+        //--ImpactStateLogic komentujê do czas a¿ zaimplementujemy "HeavyAttack dla bossów"
+        //Health.OnTakeDamage -= HandleTakeDamage;
+        //---------------------------------------------------------------------------------
         Health.OnDie -= HandleIsDead;
     }
 
-    private void HandleTakeDamage()
-    {
-        SwitchState(new PlayerImpactState(this));
-    }
-
+    //--ImpactStateLogic komentujê do czas a¿ zaimplementujemy "HeavyAttack dla bossów"
+    //private void HandleTakeDamage()
+    //{
+    //    SwitchState(new PlayerImpactState(this));
+    //}
+    //------------------------------------------------------------------------------------
     private void HandleIsDead()
     {
         SwitchState(new PlayerDeadState(this));

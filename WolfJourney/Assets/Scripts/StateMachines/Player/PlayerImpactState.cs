@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//--ImpactStateLogic komentujê do czas a¿ zaimplementujemy "HeavyAttack dla bossów"
 public class PlayerImpactState : PlayerBaseState
 {
     public PlayerImpactState(PlayerStateMachine stateMachine) : base(stateMachine) { }
@@ -32,3 +33,4 @@ public class PlayerImpactState : PlayerBaseState
 
   
 }
+//-----------------------------------------------------------------------------

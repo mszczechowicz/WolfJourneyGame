@@ -22,7 +22,8 @@ public class PlayerDodgeState : PlayerBaseState
     public override void Enter()
     {
         remainingDodgeTime = stateMachine.DodgeDuration;
-     
+        stateMachine.Health.SetInvulnerable(true);
+
         stateMachine.Animator.CrossFadeInFixedTime(DodgeHash, CrossFadeDuration);
 
     }
@@ -56,7 +57,7 @@ public class PlayerDodgeState : PlayerBaseState
 
     public override void Exit()
     {
-       
+        stateMachine.Health.SetInvulnerable(false);
     }
     
 
