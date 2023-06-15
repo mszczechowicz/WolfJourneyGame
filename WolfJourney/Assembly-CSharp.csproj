@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\ForceReceiver.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyStateMachine.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyAttackingState.cs" />
+    <Compile Include="Assets\Shaders\LowHP\Blit.cs" />
     <Compile Include="Assets\Scripts\StateMachines\State.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerFallingState.cs" />
     <Compile Include="Assets\Scripts\Attack.cs" />
@@ -83,9 +84,9 @@
     <Compile Include="Assets\Scripts\StateMachines\Enemy\EnemyDeadState.cs" />
     <Compile Include="Assets\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\StateMachines\StateMachine.cs" />
+    <Compile Include="Assets\Shaders\SlashSword\SlashEnable.cs" />
     <Compile Include="Assets\Scripts\StateMachines\Player\PlayerBaseState.cs" />
     <Compile Include="Assets\Scripts\Controls.cs" />
-    <Compile Include="Assets\Shaders\LowHP\Blit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
