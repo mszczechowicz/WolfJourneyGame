@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2061562208989191521
+--- !u!114 &-5702440148215122311
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IceMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: b4e61c4abb7f052478ff204ac08dbc73, type: 3}
+  m_Name: Shader Graphs_LavaShader
+  m_Shader: {fileID: -6465566751694194690, guid: 88907cd0665162a49832aad1f93378d4, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
@@ -33,20 +33,16 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _IceAlbedo:
-        m_Texture: {fileID: 2800000, guid: 1120f9e61624b2c418c2bb79930f8fb9, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _IceHeight:
-        m_Texture: {fileID: 2800000, guid: 8dc93551829a7c646a39374686c145bd, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _LavaNormal:
-        m_Texture: {fileID: 2800000, guid: 0bf56044712d1a2438aa3ce873d841c9, type: 3}
+        m_Texture: {fileID: 2800000, guid: ca8be0a5811b93b4f8192841cde5e1ac, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Texture2DAsset_ebf94b02c68d4d569d7a75bee7b17c26_Out_0:
-        m_Texture: {fileID: 2800000, guid: 8dc93551829a7c646a39374686c145bd, type: 3}
+    - _LavaTexture:
+        m_Texture: {fileID: 2800000, guid: 034901cca715c6c4b9851ec02a76c736, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_30d8434157984e178f75b208117c4f88_Out_0:
+        m_Texture: {fileID: 2800000, guid: 034901cca715c6c4b9851ec02a76c736, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -63,10 +59,28 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _EmissionStrength: 11.23
-    - _MoveSpeed: 0.01
+    - _ChangePosition: 0.2
+    - _FresnelPower: 0.67
+    - _Metalic: 0
+    - _PositionIntensity: 1
+    - _PowerSimpleNoise: 2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _movespeedoffset: 0
-    m_Colors: []
+    - _SimpleNoiseAmount: 0.5
+    - _SimpleNoiseScale: 30
+    - _Smoothness: 0.5
+    - _SolidifyPower: 1.64
+    - _VoronoiAmount: 0.05
+    - _VoronoiAngleOffset: 2
+    - _VoronoiScale: 20
+    m_Colors:
+    - _FresnelColor: {r: 23.96863, g: 2.384314, b: 2.384314, a: 1}
+    - _LavaColor: {r: 4, g: 0.8, b: 0, a: 1}
+    - _LavaNormalSpeed: {r: 0, g: 0.005, b: 0, a: 0}
+    - _LavaRemap: {r: 0, g: 1.5, b: 0, a: 0}
+    - _LavaScale: {r: 2, g: 2, b: 0, a: 0}
+    - _LavaSpeed: {r: 0, g: 0.01, b: 0, a: 0}
+    - _SimpleNoiseSpeed: {r: 0, g: 0.05, b: 0, a: 0}
+    - _SolidifyRemap: {r: 0, g: 1, b: 0, a: 0}
+    - _VoronoiSpeed: {r: 0, g: 0.005, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -75,7 +75,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
     - _DissolveColor: {r: 0.8679245, g: 0, b: 0.01622285, a: 0}
-    - _glowcolor: {r: 0.35294116, g: 0.8745099, b: 0.16078427, a: 1}
+    - _glowcolor: {r: 45.71259, g: 111.93723, b: 21.098118, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &6777758418124549539
 MonoBehaviour:
